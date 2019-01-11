@@ -1,0 +1,1 @@
+export const connection = 'http://localhost:4041/api'
