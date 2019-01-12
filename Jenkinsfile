@@ -29,7 +29,7 @@ pipeline {
       steps {
         sh 'docker build -t fun4-frontend .'
         sh 'docker rm -f fun4-frontend || true'
-        sh 'docker run -d -p 4042:4042 --restart always --name fun4-frontend fun4-frontend'
+        sh 'docker run -d -p 4042:4042 --network fun4-network --restart always --name fun4-frontend fun4-frontend'
         sh 'docker image prune -f'
       }
     }
