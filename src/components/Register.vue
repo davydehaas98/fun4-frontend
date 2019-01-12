@@ -40,12 +40,9 @@
                     return
                 }
 
-                await axios.post(connection + '/users', {
-                    id: null,
+                await axios.post(connection + '/auth/register', {
                     username: this.username,
-                    password: this.password,
-                    userRole: null,
-                    tickets: null
+                    password: this.password
                 }).then(response => {
                     console.log(response)
                     this.$router.go(this.$router.currentRoute)
