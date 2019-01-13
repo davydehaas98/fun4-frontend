@@ -2,7 +2,7 @@
     <div class="container">
         <div id="movies">
             <p v-if="!movies">Loading movies...</p>
-            <div id="movie" v-else v-for="movie in movies" v-bind:key="movie.id">
+            <div id="movie" v-else v-for="movie in movies" v-bind:key="movie.id" @click="getMovie(movie.id)">
                 <p> {{ movie.id }}</p>
                 <p> {{ movie.title }}</p>
                 <p> {{ movie.releaseDate }} </p>
@@ -35,6 +35,12 @@ export default {
             })
             .catch(error => {
                 this.error = error
+            })
+        },
+        async getMovie(id) {
+            await axios.get(connection + '/movies/' + id)
+            .then(repsonse => {
+                this.$router.push('/')
             })
         }
     }

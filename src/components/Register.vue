@@ -1,9 +1,9 @@
 <template>
     <div class="container">
+        <div class="alert alert-danger" v-if="error">
+            {{ error }}
+        </div>
         <form @submit.prevent="register">
-            <div class="alert alert-danger" v-if="error">
-                {{ error }}
-            </div>
             <div class="form-group">
                 <input class="form-control" name="username" v-model="username" placeholder="Username" type="text">
             </div>
