@@ -1,20 +1,16 @@
 <template>
   <div class="home">
-    <Login />
-    <br>
-    <Register />
+    <Movies />
   </div>
 </template>
 
 <script>
-    import Login from '@/components/Login.vue'
-    import Register from '@/components/Register.vue'
+import Movies from '@/components/Movies.vue'
 
-    export default {
-        name: 'home',
-        components: {
-            Login,
-            Register
-        }
+export default {
+    name: 'home',
+    components: {
+        Movies
     }
+}
 </script>

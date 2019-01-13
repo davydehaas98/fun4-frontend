@@ -5,12 +5,12 @@
                 {{ error }}
             </div>
             <div class="form-group">
-                <input class="form-control" v-model="username" placeholder="Username" type="text">
+                <input class="form-control" name="username" v-model="username" placeholder="Username" type="text">
             </div>
             <div class="form-group">
-                <input class="form-control" v-model="password" placeholder="Password" type="password">
+                <input class="form-control" name="password" v-model="password" placeholder="Password" type="password">
             </div>
-            <button class="btn btn-primary">Login</button>
+            <button class="btn btn-primary" name="login">Login</button>
         </form>
     </div>
 </template>
@@ -37,13 +37,11 @@
                 }
                 await axios.post(connection + '/auth/login', {
                     username: this.username,
-                    password: this.password
+                    password: this.password,
                 }).then(response => {
-                    console.log(response)
                     localStorage.setItem('user', JSON.stringify(response.data))
-                    this.$router.go(this.$router.currentRoute)
+                    this.$router.push('/')
                 }).catch(error => {
-                    console.log(error)
                     this.error = error
                 })
             }
