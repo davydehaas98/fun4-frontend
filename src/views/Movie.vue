@@ -8,7 +8,6 @@
     import Movie from '@/components/Movie.vue'
 
     export default {
-        name: 'movie',
         components: {
             Movie
         },

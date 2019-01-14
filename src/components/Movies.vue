@@ -1,7 +1,7 @@
 <template>
     <div class="movies">
         <p v-if="!movies">Loading movies...</p>
-        <router-link v-else v-for="movie in movies" :key="movie.id" :to="{ path: 'movie', query: { id: movie.id.toString() }}" :id="movie.id">
+        <router-link v-else v-for="movie in movies" :key="movie.id" :to="{ path: 'movie', query: { id: movie.id.toString() }}" id="movie">
             <img id="image" :src="movie.imageUrl" />
             <p id="title">{{ movie.title }}</p>
         </router-link>
@@ -48,6 +48,7 @@
     margin: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    text-decoration-line: none;
 }
 #movie:hover {
     opacity: .7;

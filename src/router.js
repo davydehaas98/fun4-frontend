@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
+import Movie from '@/views/Movie.vue'
 import { connection } from '@/variables'
 import axios from 'axios'
 
@@ -30,7 +31,7 @@ export default new Router({
         {
             path: '/movie',
             name: 'movie',
-            component: DeviceMotionEvent,
+            component: Movie,
             props: (route) => ({
                 id: route.query.id
             })
@@ -49,9 +50,11 @@ function checkAuth(to, from, next) {
         axios.post(connection + '/auth/token', {
             id: user.id,
             token: user.token
-        }).then(response => {
-                next()
-        }).catch(error => {
+        }).then(() => {
+                next({
+                    path: '/'
+                })
+        }).catch(() => {
                 localStorage.removeItem('user')
                 next({
                     path: '/login',

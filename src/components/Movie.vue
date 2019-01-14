@@ -1,6 +1,7 @@
 <template>
-    <div class="movie" :id="id">
-
+    <div v-if="movie" class="movie" :id="id">
+        <img id="image" :src="movie.imageUrl" />
+        <p>{{ movie.title }}</p>
     </div>
 </template>
 
