@@ -34,7 +34,8 @@ export default new Router({
             component: Movie,
             props: (route) => ({
                 id: route.query.id
-            })
+            }),
+            beforeEnter: checkAuth
         },
         {
             path: '*',
