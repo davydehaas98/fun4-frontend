@@ -31,11 +31,16 @@
         methods: {
             async login() {
                 this.error = null
-                if (this.username.length < 3 || this.username.length > 32) {
-                    return this.error = 'Username is not the correct length'
-                } else if (this.password.length < 6 || this.password.length > 32) {
-                    return this.error = 'Password is not the correct length'
+                if (this.username.length < 3) {
+                    return this.error = 'Your username is too short'
+                } else if (this.username.length > 32) {
+                    return this.error = 'Your username is too long'
+                } else if (this.password.length < 6) {
+                    return this.error = 'Your password is too short'
+                } else if (this.password.length > 32) {
+                    return this.error = 'Your password is too long'
                 }
+                
                 await axios.post(connection + '/auth/login', {
                     username: this.username,
                     password: this.password,

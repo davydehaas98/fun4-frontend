@@ -34,9 +34,16 @@
         methods: {
             async register() {
                 this.error = null
-                if (this.username.length < 3 || this.password.length < 6 || this.password !== this.passwordConfirmation) {
-                    this.error = 'Something was not filled in correctly'
-                    return
+                if (this.username.length < 3) {
+                    return this.error = 'Your username is too short'
+                } else if (this.username.length > 32) {
+                    return this.error = 'Your username is too long'
+                } else if (this.password.length < 6) {
+                    return this.error = 'Your password is too short'
+                } else if (this.password.length > 32) {
+                    return this.error = 'Your password is too long'
+                } else if (this.password !== this.passwordConfirmation) {
+                    return this.error = 'Your passwords do not match'
                 }
 
                 await axios.post(connection + '/auth/register', {
