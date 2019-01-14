@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="register">
         <div class="alert alert-danger" v-if="error">
             {{ error }}
         </div>
@@ -19,37 +19,37 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { connection } from '@/variables'
+    import axios from 'axios'
+    import { connection } from '@/variables'
 
-export default {
-    data () {
-        return {
-            username: '',
-            password: '',
-            passwordConfirmation: '',
-            error: null
-        }
-    },
-    methods: {
-        async register() {
-            this.error = null
-            if (this.username.length < 3 || this.password.length < 6 || this.password !== this.passwordConfirmation) {
-                this.error = 'Something was not filled in correctly'
-                return
+    export default {
+        data () {
+            return {
+                username: '',
+                password: '',
+                passwordConfirmation: '',
+                error: null
             }
-
-            await axios.post(connection + '/auth/register', {
-                username: this.username,
-                password: this.password
-            }).then(response => {
-                if (response.data != '') {
-                    this.$router.push('/login')
+        },
+        methods: {
+            async register() {
+                this.error = null
+                if (this.username.length < 3 || this.password.length < 6 || this.password !== this.passwordConfirmation) {
+                    this.error = 'Something was not filled in correctly'
+                    return
                 }
-            }).catch(error => {
-                this.error = error
-            })
+
+                await axios.post(connection + '/auth/register', {
+                    username: this.username,
+                    password: this.password
+                }).then(response => {
+                    if (response.data != '') {
+                        this.$router.push('/login')
+                    }
+                }).catch(error => {
+                    this.error = error
+                })
+            }
         }
     }
-}
 </script>

@@ -3,8 +3,8 @@ import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
+import { connection } from '@/variables'
 import axios from 'axios'
-import { connection } from "@/variables"
 
 Vue.use(Router)
 
@@ -14,7 +14,8 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: Home
+            component: Home,
+            beforeEnter: checkAuth
         },
         {
             path: '/login',
@@ -27,8 +28,42 @@ export default new Router({
             component: Register
         },
         {
+            path: '/movie',
+            name: 'movie',
+            component: DeviceMotionEvent,
+            props: (route) => ({
+                id: route.query.id
+            })
+        },
+        {
             path: '*',
             redirect: '/'
         }
     ]
 })
+
+function checkAuth(to, from, next) {
+    var user = JSON.parse(localStorage.getItem('user'))
+
+    if (user != null) {
+        axios.post(connection + '/auth/token', {
+            id: user.id,
+            token: user.token
+        }).then(response => {
+                next()
+        }).catch(error => {
+                localStorage.removeItem('user')
+                next({
+                    path: '/login',
+                    query: { redirect: to.fullPath }
+                })
+            })
+        }
+    else {
+        localStorage.removeItem('user')
+        next({
+            path: '/login',
+            query: { redirect: to.fullPath }
+        })
+    }
+}

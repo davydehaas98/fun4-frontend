@@ -1,51 +1,43 @@
 <template>
-    <div class="container">
-        <div id="movies">
-            <p v-if="!movies">Loading movies...</p>
-            <div id="movie" v-else v-for="movie in movies" v-bind:key="movie.id" @click="getMovie(movie.id)">
-                <img id="image" :src="movie.imageUrl" />
-                <p id="title">{{ movie.title }}</p>
-            </div>
-        </div>
+    <div class="movies">
+        <p v-if="!movies">Loading movies...</p>
+        <router-link v-else v-for="movie in movies" :key="movie.id" :to="{ path: 'movie', query: { id: movie.id.toString() }}" :id="movie.id">
+            <img id="image" :src="movie.imageUrl" />
+            <p id="title">{{ movie.title }}</p>
+        </router-link>
     </div>
 </template>
 
 <script>
-import axios from 'axios'
-import { connection } from '@/variables'
+    import axios from 'axios'
+    import { connection } from '@/variables'
 
-export default {
-    data() {
-        return {
-            movies: null,
-            error: null
-        }
-    },
-    mounted() {
-        this.getMovies()
-    },
-    methods: {
-        async getMovies() {
-            await axios.get(connection + '/movies')
-            .then(response => {
-                this.movies = response.data
-            })
-            .catch(error => {
-                this.error = error
-            })
+    export default {
+        data() {
+            return {
+                movies: null,
+                error: null
+            }
         },
-        async getMovie(id) {
-            await axios.get(connection + '/movies/' + id)
-            // .then(response => {
-            //     console.log(response.data)
-            // })
+        mounted() {
+            this.getMovies()
+        },
+        methods: {
+            async getMovies() {
+                await axios.get(connection + '/movies')
+                .then(response => {
+                    this.movies = response.data
+                })
+                .catch(error => {
+                    this.error = error
+                })
+            }
         }
     }
-}
 </script>
 
 <style>
-#movies {
+.movies {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header class="header">
         <nav class="navbar navbar-light">
             <div class="container">
                 <router-link class="nav-link" to="/">Home</router-link>
@@ -12,33 +12,33 @@
 </template>
 
 <script>
-import { EventBus } from '@/eventBus'
+    import { EventBus } from '@/eventBus'
 
-export default {
-    data() {
-        return {
-            isLogged: this.userLogged()
-        }
-    },
-    methods: {
-        userLogged() {
-            if (localStorage.getItem('user')) {
-                return true
+    export default {
+        data() {
+            return {
+                isLogged: this.userLogged()
             }
-            return false
         },
-        logout () {
-            localStorage.removeItem('user')
-            this.isLogged = this.userLogged()
-            this.$router.push('/login')
+        methods: {
+            userLogged() {
+                if (localStorage.getItem('user')) {
+                    return true
+                }
+                return false
+            },
+            logout () {
+                localStorage.removeItem('user')
+                this.isLogged = this.userLogged()
+                this.$router.push('/login')
+            }
+        },
+        created() {
+            EventBus.$on('userLogged', () => {
+                this.isLogged = this.userLogged()
+            })
         }
-    },
-    created() {
-        EventBus.$on('userLogged', () => {
-            this.isLogged = this.userLogged()
-        })
     }
-}
 </script>
 
 
