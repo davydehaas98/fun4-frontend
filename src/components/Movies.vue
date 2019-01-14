@@ -3,11 +3,8 @@
         <div id="movies">
             <p v-if="!movies">Loading movies...</p>
             <div id="movie" v-else v-for="movie in movies" v-bind:key="movie.id" @click="getMovie(movie.id)">
-                <p>Id: {{ movie.id }}</p>
-                <p>Title: {{ movie.title }}</p>
-                <p>Release Date: {{ movie.releaseDate }}</p>
-                <p>Image URL: {{ movie.imageUrl }}</p>
-                <p>Genres: {{ movie.genres }}</p>
+                <img id="image" :src="movie.imageUrl" />
+                <p id="title">{{ movie.title }}</p>
             </div>
         </div>
     </div>
@@ -50,10 +47,26 @@ export default {
 </script>
 
 <style>
+#movies {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 #movie {
-    background-color: lightseagreen;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 10px;
+    background-color: rgb(0, 0, 0);
+    margin: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+#movie:hover {
+    opacity: .5;
+    cursor: pointer;
+}
+#image {
+    max-height: 300px;
+}
+#title {
+    color: white;
+    text-align: center;
 }
 </style>
