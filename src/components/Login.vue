@@ -21,7 +21,6 @@
     import { EventBus } from '@/eventBus'
     
     export default {
-        name: 'Login',
         data() {
             return {
                 username: '',
@@ -32,9 +31,9 @@
         methods: {
             async login() {
                 this.error = null
-                if (this.username.length < 4 || this.username.length > 32) {
+                if (this.username.length < 3 || this.username.length > 32) {
                     return this.error = 'Username is not the correct length'
-                } else if (this.password.length < 4 || this.password.length > 32) {
+                } else if (this.password.length < 6 || this.password.length > 32) {
                     return this.error = 'Password is not the correct length'
                 }
                 await axios.post(connection + '/auth/login', {

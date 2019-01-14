@@ -12,11 +12,9 @@
 
 <script>
 import axios from 'axios'
-import moment from 'moment'
 import { connection } from '@/variables'
 
 export default {
-    name: 'Movies',
     data() {
         return {
             movies: null,
@@ -38,9 +36,9 @@ export default {
         },
         async getMovie(id) {
             await axios.get(connection + '/movies/' + id)
-            .then(response => {
-                console.log(response.data)
-            })
+            // .then(response => {
+            //     console.log(response.data)
+            // })
         }
     }
 }
@@ -51,6 +49,7 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 #movie {
     background-color: rgb(0, 0, 0);
@@ -59,14 +58,14 @@ export default {
     border-bottom-right-radius: 10px;
 }
 #movie:hover {
-    opacity: .5;
+    opacity: .7;
     cursor: pointer;
 }
 #image {
-    max-height: 300px;
+    height: 300px;
 }
 #title {
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
 }
 </style>

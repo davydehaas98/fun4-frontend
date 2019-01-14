@@ -20,10 +20,9 @@
 
 <script>
 import axios from 'axios'
-import { connection } from "@/variables"
+import { connection } from '@/variables'
 
 export default {
-    name: 'Register',
     data () {
         return {
             username: '',
@@ -35,7 +34,7 @@ export default {
     methods: {
         async register() {
             this.error = null
-            if (this.username.length < 4 || this.password.length < 4 || this.password !== this.passwordConfirmation) {
+            if (this.username.length < 3 || this.password.length < 6 || this.password !== this.passwordConfirmation) {
                 this.error = 'Something was not filled in correctly'
                 return
             }
@@ -44,7 +43,9 @@ export default {
                 username: this.username,
                 password: this.password
             }).then(response => {
-                this.$router.push('/')
+                if (response.data != '') {
+                    this.$router.push('/login')
+                }
             }).catch(error => {
                 this.error = error
             })
