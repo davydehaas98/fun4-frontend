@@ -51,9 +51,7 @@ function checkAuth(to, from, next) {
             id: user.id,
             token: user.token
         }).then(() => {
-                next({
-                    path: '/'
-                })
+                next()
         }).catch(() => {
                 localStorage.removeItem('user')
                 next({
