@@ -12,6 +12,7 @@ services:
     networks:
       - fun4-dev
       
-# networks:
-#   fun4-dev:
-#     external: true
+networks:
+  fun4-dev:
+    external:
+      name: fun4-dev
