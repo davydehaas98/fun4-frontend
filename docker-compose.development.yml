@@ -1,0 +1,13 @@
+version: '3'
+services:
+  fun4-frontend-dev:
+    build: .
+    environment:
+      - TZ=Europe/Amsterdam
+    image: fun4-frontend-dev
+    expose:
+      - 4052
+    container_name: fun4-frontend-dev
+    restart: always
+    networks:
+      - fun4-dev
