@@ -16,7 +16,7 @@ pipeline {
             sh 'docker --version'
             sh 'which docker'
           },
-          docker-compose: {
+          dockercompose: {
             sh 'docker-compose --version'
             sh 'which docker-compose'
           }
