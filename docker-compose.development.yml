@@ -11,3 +11,8 @@ services:
     restart: always
     networks:
       - fun4-dev
+      
+networks:
+  default:
+    external:
+      name: fun4-dev
