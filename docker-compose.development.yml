@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.6'
 services:
   fun4-frontend-dev:
     build: .
@@ -9,9 +9,9 @@ services:
       - 4052
     container_name: fun4-frontend-dev
     restart: always
-    networks:
-      - fun4-dev
+#     networks:
+#       - fun4-dev
       
-networks:
-  fun4-dev:
-    external: true
+# networks:
+#   fun4-dev:
+#     external: true
