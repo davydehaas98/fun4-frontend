@@ -9,8 +9,8 @@ services:
       - 4052
     container_name: fun4-frontend-dev
     restart: always
-#     networks:
-#       - fun4-dev
+    networks:
+      - fun4-dev
       
 # networks:
 #   fun4-dev:
