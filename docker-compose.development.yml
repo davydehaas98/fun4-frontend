@@ -5,7 +5,7 @@ services:
     environment:
       - TZ=Europe/Amsterdam
     image: fun4-frontend-dev
-    port:
+    ports:
       - 4052:4042
     container_name: fun4-frontend-dev
     restart: always
