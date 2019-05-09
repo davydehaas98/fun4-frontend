@@ -35,7 +35,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        sh 'docker-compose -f docker-compose.development.yml up -d --force-recreate'
+        sh 'docker-compose -f docker-compose.development.yml up -d --build --force-recreate'
       }
     }
     // stage('Deploy') {
