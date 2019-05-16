@@ -13,7 +13,7 @@ services:
         # Run server
         # -g daemon off; is used so Docker can track the process properly,
         # otherwise the container will stop immediately after starting
-        command: bash -c "nginx -g daemon off"
+        command: bash -c "nginx -g 'daemon off;'"
         networks:
             - fun4-dev
       
