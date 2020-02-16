@@ -1,32 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:6-alpine' }
+    }
     options {
         disableConcurrentBuilds()
         timeout(time: 30, unit: "MINUTES")
     }
     stages {
-        stage("Verify Tools") {
-            steps {
-                parallel (
-                    java: {
-                        sh "java -version"
-                        sh "which java"
-                    },
-                    maven: {
-                        sh "mvn -version"
-                        sh "which mvn"
-                    },
-                    docker: {
-                        sh "docker --version"
-                        sh "which docker"
-                    },
-                    dockercompose: {
-                        sh "docker-compose --version"
-                        sh "which docker-compose"
-                    }
-                )
-            }
-        }
         stage("Build") {
             steps {
                 sh "npm prune"
